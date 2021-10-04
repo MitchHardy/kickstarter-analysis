@@ -7,25 +7,26 @@
 ## Analysis and Challenges
 
 ### Analysis of Outcomes Based on Launch Date
-In the Outcomes Based on Launch Date sheet we analyzed the campaign outcomes based on the month they launched. This analysis is important because Louise’s play Fever did not meet its goal and she had a short amount of time to achieve her fundraising goal. To begin this analysis we will need to add a new column in the kickstarter sheet labeled “Years”. I then used the Year() function by placing the “Data Created Conversion” data in the function to output the correct year the campaign started. ![This is an image](/Desktop
-
- 
+In the Outcomes Based on Launch Date sheet we analyzed the campaign outcomes based on the month they launched. This analysis is important because Louise’s play Fever did not meet its goal and she had a short amount of time to achieve her fundraising goal. To begin this analysis we will need to add a new column in the kickstarter sheet labeled “Years”. I then used the Year() function by placing the “Data Created Conversion” data in the function to output the correct year the campaign started. 
+![This is an image](https://github.com/MitchHardy/kickstarter-analysis/blob/main/Outcomes_vs_Launch_Step1.png) 
 After the year column is filled out, I created a pivot table from the Kickstarter sheet. In the pivot table I used the “Parent Category” and “Year” as the filters for the table. The “Data Created Conversion” was used to populate the rows and the “Outcomes” field is summarized by “count” to display the data. “Outcomes” is also used in the Columns field. 
- 
+![This is an image](https://github.com/MitchHardy/kickstarter-analysis/blob/main/Outcomes_vs_Launch_Step2.png) 
 After I created the pivot table, I used the Column filter to only display “successful”, “failed”, and “canceled” data. 
- 
+![This is an image](https://github.com/MitchHardy/kickstarter-analysis/blob/main/Outcomes_vs_Launch_Step3.png) 
 The next step I took was filtering the “Parent Category” by clicking on the filter button in cell (B,2) and then choosing “theater” to only display theater campaigns by month. 
- 
+![This is an image](https://github.com/MitchHardy/kickstarter-analysis/blob/main/Outcomes_vs_Launch_Step4.png) 
 After filtering the “Parent Category” I sorted the outcomes in the pivot table by clicking the “Descending” button in the column filters to show the “successful” campaigns first and “canceled” campaigns last. 
- 
+![This is an image](https://github.com/MitchHardy/kickstarter-analysis/blob/main/Outcomes_vs_Launch_Step5.png) 
 The last step in this analysis is creating the line chart. To create the line chart I selected the entire sheet and then clicked on “insert” in the toolbar. From there I selected the line chart option to create the chart. 
  
-
 ### Analysis of Outcomes Based on Goals
 The Outcomes Based on Goals sheet is an analysis of the campaign fundraising goals. In this analysis I used more formulas than the “Theater Outcomes Based on Launch Date” analysis. This analysis required much more attention to detail in order to make sure the formulas were correct and to make sure I wasn’t missing any steps. For this analysis I created a new sheet and added the following column headers in row 1, goal, number successful, number failed, number canceled, total projects, percentage seccessful, percentage failed and percentage canceled. After adding these into the new sheet I added in the dollar amount ranges from less than $1,000 to greater than $50,000. This allows us to group the campaigns based on the goal amount so Louise can see if successful campaigns correlate with a dollar amount. 
-
-After the dollar amount ranges are in I used the COUNTIFS() function to populate the number successful, failed and canceled columns. Within the COUNTIFS() formula I pulled data from the "Kickstarter" sheet and 
- 
+![This is an image](https://github.com/MitchHardy/kickstarter-analysis/blob/main/Outcomes_vs_Goals_Step1.png)
+After the dollar amount ranges are in I used the COUNTIFS() function to populate the number successful, failed and canceled columns. Within the COUNTIFS() formula I pulled the "outcome", "subcategory" and "goal" data from the "Kickstarter" sheet. To populate the number of successful campaigns within the goal amount ranges from column A, I first pulled the the "outcomes" data from column F in the Kickstarter sheet and added "=successful" at the end of the criteria range in the formula to calculate all of the campaigns that were "successful" from the Kickstarter data. Second, I pulled the data from the D column of the Kickstarter sheet and put ">=1000" so it would filter the successful campaigns that had a goal of less than or equal to $1,000. The last part of the formula I pulled the "Subcategory" data from the Kickstarter sheet filtered it to equal "plays" so is would give me the successful plays that had a goal of less than or equal to $1,000. I then followed this steps for the rest of the successful campaigns and the failed and canceled campaigns. 
+![This is an image](https://github.com/MitchHardy/kickstarter-analysis/blob/main/Outcomes_vs_Goals_Step2.png)
+Next, I added the number of "successful", "failed", and "canceled" campaigns to populate the "Total Projects". I did this by putting in the SUM() function in column E and added columns B, C, and D in row 2. After I got the total number of each project, I needed to get the percentage of each outcome. To get this I took the number of succesful projects from B2 and divided it by the total number of projects in E2. I did the same formula to get the percentage of failed and canceled projects. I copied these formulas down to populate the rest of the columns and rows and now have a complete set of data to analyze the outcomes vs goals. 
+![This is an image](https://github.com/MitchHardy/kickstarter-analysis/blob/main/Outcomes_vs_Goals_Step3.png)
+After the data set is filled out I created a line chart to display the outcomes. For this line chart I filtered it to pull data from column A to display the goals and then from columns F, G, and H to display the percentage of the outcomes. After applying these filters the line chart is created.
 
 ### Challenges and Difficulties Encountered
 The biggest challenge I ran into during this project was in trying to display the correct line graph for the Outcomes Based on Goals analysis. When I create the line chart, I was getting a very different result from the chart shown in the challenge assignment. I initially thought it was because I needed to adjust the data selected in the chart, but the data selected was correct and I was still getting a different result. I then retraced my steps and began carefully going through the steps again to see if there was anything I had missed. After reviewing each step, I realized that there was one thing I was missing in my data. I had forgotten to filter it by plays. I had figured out what was missing but I wasn’t sure how to filter the data to only display the plays. After trying a few things with the formula I was able to filter it correctly by adding Kickstarter!$R:$R,"plays" at the end of the formula. 
